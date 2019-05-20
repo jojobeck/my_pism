@@ -1,0 +1,1 @@
+/p/system/packages/intel/parallel_studio_xe_2018_update1/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpiicpc  -fPIC -std=c++11 -axCORE-AVX2 -mtune=broadwell -fp-model precise     -rdynamic CMakeFiles/cmTC_a0bfb.dir/test_mpi.cpp.o  -o cmTC_a0bfb 
