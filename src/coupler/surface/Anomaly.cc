@@ -21,6 +21,9 @@
 #include "pism/util/io/io_helpers.hh"
 #include "pism/coupler/util/options.hh"
 
+#include <iostream>
+#include <string>
+using namespace std;
 namespace pism {
 namespace surface {
 
@@ -102,10 +105,23 @@ void Anomaly::update_impl(const Geometry &geometry, double t, double dt) {
                                  *m_mass_flux);
   m_input_model->temperature().add(1.0, *m_ice_surface_temp_anomaly,
                                    *m_temperature);
+  IceModelVec2T::AccessList list{*m_climatic_mass_balance_anomaly};
+  IceModelVec2S::AccessList listy{*m_mass_flux};
+
+  for (Points p(*m_grid); p; p.next()) {
+    const int i = p.i(), j = p.j();
+    if(i==100 && j==100){
+        cout << "in anom: m_mass_flux  " << (*m_mass_flux)(i,j)*3600*24*365.242198781 <<" m/yr" << endl;
+        cout << "in anom: m_climatic_mass_balance_anomaly  " << (*m_climatic_mass_balance_anomaly)(i,j)*3600*24*365.242198781 <<" m/yr" << endl;
+        
+  }
+  }
 }
+
 
 const IceModelVec2S &Anomaly::mass_flux_impl() const {
   return *m_mass_flux;
+        cout << "Here "<< endl;
 }
 
 const IceModelVec2S &Anomaly::temperature_impl() const {

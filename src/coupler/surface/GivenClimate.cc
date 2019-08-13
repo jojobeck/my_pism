@@ -21,6 +21,10 @@
 #include "pism/util/Time.hh"
 #include "pism/util/IceGrid.hh"
 #include "pism/coupler/util/options.hh"
+#include <iostream>
+#include <string>
+using namespace std;
+// using std::cout;  
 
 namespace pism {
 namespace surface {
@@ -82,7 +86,6 @@ Given::Given(IceGrid::ConstPtr grid, std::shared_ptr<atmosphere::AtmosphereModel
     m_liquid_water_fraction->set(0.0);
   }
 }
-
 Given::~Given() {
   // empty
 }
@@ -93,6 +96,9 @@ void Given::init_impl(const Geometry &geometry) {
                  "* Initializing the surface model reading temperature at the top of the ice\n"
                  "  and ice surface mass flux from a file...\n");
 
+  // // m_log->message(2,
+  //                "* testing my killer ass c++ skills\n"
+  //                "  awesome\n");
   ForcingOptions opt(*m_grid->ctx(), "surface.given");
 
   m_temperature->init(opt.filename, opt.period, opt.reference_time);
@@ -106,12 +112,24 @@ void Given::init_impl(const Geometry &geometry) {
 
 void Given::update_impl(const Geometry &geometry, double t, double dt) {
   (void) geometry;
-
   m_mass_flux->update(t, dt);
   m_temperature->update(t, dt);
+  IceModelVec2T::AccessList list{*m_mass_flux};
+
+  // std::cout << "Test my c skills " << dt/(3600*24)<<" days" << std::endl;
+  // for (Points p(*m_grid); p; p.next()) {
+  //   const int i = p.i(), j = p.j();
+  //   if(i==100 && j==100){std::cout << "mass_flux  " << (*m_mass_flux)(i,j)*3600*24*365.242198781 <<"m/yr " << std::endl;
+  // }
+  // }
 
   m_mass_flux->average(t, dt);
   m_temperature->average(t, dt);
+  for (Points p(*m_grid); p; p.next()) {
+    const int i = p.i(), j = p.j();
+    if(i==100 && j==100){std::cout << "mass_flux after averag " << (*m_mass_flux)(i,j)*3600*24*365.242198781 <<" m/yr" << std::endl;
+  }
+  }
 }
 
 const IceModelVec2S &Given::mass_flux_impl() const {

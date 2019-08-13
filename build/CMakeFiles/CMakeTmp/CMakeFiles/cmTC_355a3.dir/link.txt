@@ -1,1 +1,0 @@
-/p/system/packages/intel/parallel_studio_xe_2018_update1/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpiicc -axCORE-AVX2 -mtune=broadwell -fp-model precise     -rdynamic CMakeFiles/cmTC_355a3.dir/feature_tests.c.o  -o cmTC_355a3 

@@ -1,1 +1,0 @@
-/p/system/packages/intel/parallel_studio_xe_2018_update1/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpiicc -fPIC -axCORE-AVX2 -mtune=broadwell -fp-model precise -DUDUNITS2_WORKS_WITHOUT_EXPAT    -rdynamic CMakeFiles/cmTC_6f2ad.dir/src.c.o  -o cmTC_6f2ad -Wl,-rpath,/p/system/packages/udunits/2.2.26/lib /p/system/packages/udunits/2.2.26/lib/libudunits2.so 

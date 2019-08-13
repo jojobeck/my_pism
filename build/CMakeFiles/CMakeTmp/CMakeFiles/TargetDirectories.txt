@@ -1,3 +1,0 @@
-/home/beckmann/pism/build/CMakeFiles/CMakeTmp/CMakeFiles/rebuild_cache.dir
-/home/beckmann/pism/build/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_6f2ad.dir
-/home/beckmann/pism/build/CMakeFiles/CMakeTmp/CMakeFiles/edit_cache.dir
