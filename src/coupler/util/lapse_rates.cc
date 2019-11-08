@@ -37,8 +37,9 @@ void lapse_rate_correction(const IceModelVec2S &surface,
 
   for (Points p(*grid); p; p.next()) {
     const int i = p.i(), j = p.j();
-
-    result(i, j) -= lapse_rate * (surface(i,j) - reference_surface(i, j));
+    if (surface(i,j) < reference_surface(i,j)){
+        result(i, j) -= lapse_rate * (surface(i,j) - reference_surface(i, j));
+    }
   }
 }
 

@@ -127,8 +127,6 @@ void Given::update_impl(const Geometry &geometry, double t, double dt) {
   m_temperature->average(t, dt);
   for (Points p(*m_grid); p; p.next()) {
     const int i = p.i(), j = p.j();
-    if(i==100 && j==100){std::cout << "mass_flux after averag " << (*m_mass_flux)(i,j)*3600*24*365.242198781 <<" m/yr" << std::endl;
-  }
   }
 }
 
